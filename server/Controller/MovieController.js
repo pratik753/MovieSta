@@ -38,7 +38,7 @@ exports.getMovie = async (req, res) => {
   try {
     const tcount = await Movie.countDocuments();
     console.log(tcount);
-    movies = await Movie.find().skip(skip).limit(limit).exec();
+    let movies = await Movie.find().skip(skip).limit(limit).exec();
     res.status(200).json({
       data: movies,
       count: tcount,
@@ -68,13 +68,21 @@ exports.searchMovie = async (req, res) => {
   console.log("hi");
   try {
     const { text } = req.params;
+    let movies = await Movie.find({
+      title: { $regex: `${(text, "")}`, $options: "i" },
+    })
+      .skip(skip)
+      .limit(limit)
+      .exec();
+
     // const text = "Behe";
-    moviedetail = await Movie.find({
-      title: { $regex: `${text}`, $options: "i" },
-    });
+    // moviedetail = await Movie.find({
+    //   title: { $regex: `${text}`, $options: "i" },
+    // });
     res.status(200).json({
       data: moviedetail,
     });
+    console.log("moviedetail");
   } catch (error) {
     console.log(error);
     res.status(409).json({

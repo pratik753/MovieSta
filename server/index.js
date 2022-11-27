@@ -4,7 +4,7 @@ dotenv.config({ path: "./config.env" });
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-app.use(express.json({ limit: "200kb" }));
+app.use(express.json({ limit: "500kb" }));
 app.use(express.urlencoded({ extended: false })); //urlencoded
 app.use(cors()); //cors
 const movieRoute = require("./Routes/MovieRoute");
