@@ -158,7 +158,7 @@ const AddMovies = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    // createStockItem(movieName);
+    // createStockItem(movieName
     createMovie(movieName);
     console.log(movieName);
     // clearData();
